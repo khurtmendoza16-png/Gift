@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>For My Baby</title>
     <style>
-        /* Base Setup */
+        /* Base Setup & Animations */
         * {
             margin: 0;
             padding: 0;
@@ -22,7 +22,12 @@
             position: relative;
         }
 
-        /* Background Flowers */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Floating Background Flowers */
         .sakura-bg {
             position: fixed;
             font-size: 4.5rem;
@@ -33,7 +38,7 @@
         .top-left { top: 5%; left: 5%; transform: rotate(-15deg); }
         .bottom-right { bottom: 5%; right: 5%; transform: rotate(20deg); }
 
-        /* SCREEN 1: LOGIN SCREEN */
+        /* SCREEN 1: LOGIN BOX */
         #loginScreen {
             display: flex;
             min-height: 100vh;
@@ -105,6 +110,7 @@
             padding: 2rem 1.5rem;
             box-shadow: 0 10px 30px rgba(255, 154, 178, 0.15);
             margin-bottom: 1.8rem;
+            animation: fadeIn 0.6s ease forwards;
         }
 
         .section-title {
@@ -129,59 +135,33 @@
             font-style: italic;
         }
 
-                /* 2. SPOTIFY APP PILLED BUTTON */
-        .spotify-app-pill {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            background: #1DB954; /* Exact Spotify green brand color */
-            padding: 1rem 1.2rem;
-            border-radius: 50px;
-            color: white;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1.05rem;
-            box-shadow: 0 6px 20px rgba(29, 185, 84, 0.3);
-            transition: transform 0.2s, background-color 0.2s;
-            margin: 0.5rem 0;
+        /* 2. MIXTAPE CONTROLS */
+        .audio-wrapper {
+            background: #fff0f3;
+            border: 1.5px solid #ffe3e9;
+            border-radius: 16px;
+            padding: 1.2rem 1rem;
+            text-align: center;
         }
-
-        .spotify-app-pill:active {
-            transform: scale(0.97);
-            background: #1aa34a;
-        }
-
-        .spotify-info {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            text-align: left;
-        }
-
-        .spotify-text-wrapper h4 {
-            font-size: 0.95rem;
-            color: #ffffff;
-            margin-bottom: 2px;
-        }
-
-        .spotify-text-wrapper p {
-            font-size: 0.8rem;
-            color: #e0f7e7;
-        }
-
-        .play-badge {
-            font-size: 1.2rem;
-            background: white;
-            color: #1DB954;
-            width: 32px;
-            height: 32px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-        }
+        .song-details { margin-bottom: 12px; }
+        #songTitle { font-size: 1.1rem; font-weight: 600; color: #d14d70; }
+        #songArtist { font-size: 0.85rem; color: #888; margin-top: 2px; }
+        audio { width: 100%; outline: none; margin-bottom: 10px; }
         
-        /* 3. NOTES */
+        .next-btn {
+            background: linear-gradient(90deg, #ff8fa9 0%, #ff5c8a 100%);
+            color: white;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(255, 92, 138, 0.2);
+        }
+        .next-btn:active { transform: scale(0.95); }
+
+        /* 3. NOTES LIST */
         .notes-list {
             list-style: none;
             text-align: left;
@@ -197,7 +177,7 @@
             line-height: 1.4;
         }
 
-        /* 4. GALLERY */
+        /* 4. GALLERY PHOTOS */
         .photo-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -226,83 +206,89 @@
 </head>
 <body>
 
-    <!-- Background Sprites -->
     <div class="sakura-bg top-left">🌸</div>
     <div class="sakura-bg bottom-right">🌸</div>
 
-    <!-- SCREEN 1: LOGIN -->
     <div id="loginScreen">
         <div class="login-card">
             <form onsubmit="checkPassword(event)">
                 <h1>Welcome my baby,</h1>
                 <h2>Enjoy your stay <span class="flower-icon">🌸</span></h2>
-                
                 <input type="password" id="passInput" class="password-input" placeholder="••••••••" required>
-                
                 <button type="submit" class="submit-btn">Enter with Love</button>
             </form>
         </div>
     </div>
 
-    <!-- SCREEN 2: MAIN DASHBOARD -->
     <div id="mainContent">
         
-        <!-- SECTION 1: LOVE LETTER -->
         <div class="content-card">
             <h3 class="section-title">✍️ My Letter to You</h3>
             <p class="love-letter">
-                To my favorite person,
+                To my absolute favorite person,
 
-                Thank you for being the brightest part of my day, my comfort place, and my best friend. Every moment with you is a memory I treasure. 
-                
-                I created this little space just for you to remind you how deeply you are loved. Forever and always. ❤️
+                I wanted to build a safe little corner of the internet just for you. Thank you for being the brightest part of my day, my comfort place, and my best friend. 
+
+                Every single laugh, every late-night conversation, and every little moment we share is a memory I hold incredibly close to my heart. I created this space to remind you how deeply you are loved. No matter where we are or how busy life gets, it's always you. Forever and always. ❤️
             </p>
         </div>
 
-                <!-- SECTION 2: MUSIC (SPOTIFY FIXED MOBILE PLAYER) -->
         <div class="content-card">
-            <h3 class="section-title">🎵 Our Song</h3>
-            <!-- Direct app linking path to prevent localhost error blocks -->
-            <a href="https://spotify.com" target="_blank" class="spotify-app-pill">
-                <div class="spotify-info">
-                    <span style="font-size: 1.6rem;">🟢</span>
-                    <div class="spotify-text-wrapper">
-                        <h4>Glue Song</h4>
-                        <p>beabadoobee</p>
-                    </div>
+            <h3 class="section-title">🎵 Our Mixtape</h3>
+            <div class="audio-wrapper">
+                <div class="song-details">
+                    <p id="songTitle">Glue Song</p>
+                    <p id="songArtist">beabadoobee</p>
                 </div>
-                <div class="play-badge">▶</div>
-            </a>
+                <audio id="romanticPlayer" controls>
+                    <source id="audioSource" src="song1.mp3" type="audio/mpeg">
+                </audio>
+                <button class="next-btn" onclick="nextSong()">Next Track ⏭️</button>
+            </div>
         </div>
-        
-        <!-- SECTION 3: NOTES -->
+
         <div class="content-card">
-            <h3 class="section-title">📌 Little Things I Love About You</h3>
+            <h3 class="section-title">📌 Things I Love About You</h3>
             <ul class="notes-list">
-                <li class="note-item">✨ The way your eyes crinkle when you smile genuinely.</li>
-                <li class="note-item">🧸 How safe and peaceful it feels just sitting next to you.</li>
-                <li class="note-item">🥞 Your laugh is literally my absolute favorite sound in the world.</li>
+                <li class="note-item">✨ The beautiful way your eyes crinkle whenever you smile genuinely.</li>
+                <li class="note-item">🧸 How safe, peaceful, and calm it feels just sitting next to you.</li>
+                <li class="note-item">🥞 Your laugh is quite literally my absolute favorite sound in the whole world.</li>
+                <li class="note-item">🌸 How thoughtful you are, and how you make everything around you brighter.</li>
             </ul>
         </div>
 
-        <!-- SECTION 4: GALLERY -->
         <div class="content-card">
             <h3 class="section-title">📸 Beautiful Moments</h3>
             <div class="photo-grid">
                 <div class="photo-frame" style="--r: -3deg">
-                    <img src="https://unsplash.com" alt="Us">
+                    <img src="photo1.jpg" alt="Our Memory 1">
                 </div>
                 <div class="photo-frame" style="--r: 3deg">
-                    <img src="https://unsplash.com" alt="Us">
+                    <img src="photo2.jpg" alt="Our Memory 2">
                 </div>
             </div>
         </div>
 
     </div>
 
-    <script>
-        // Password to unlock is 'love'
+        <script>
+        // ==========================================
+        // CONFIGURATION: EDIT YOUR SETUP HERE!
+        // ==========================================
+        
         const SECRET_PASSWORD = "love";
+
+        const playlist = [
+            { title: "Glue Song", artist: "beabadoobee", file: "song1.mp3", start: 45, end: 75 },
+            { title: "Second Love Song", artist: "Favorite Artist", file: "song2.mp3", start: 10, end: 40 },
+            { title: "Third Love Song", artist: "Favorite Artist", file: "song3.mp3", start: 20, end: 50 }
+        ];
+
+        // ==========================================
+        // CORE ENGINE (Runs automatically below)
+        // ==========================================
+        let currentIndex = 0;
+        const player = document.getElementById('romanticPlayer');
 
         function checkPassword(event) {
             event.preventDefault();
@@ -311,9 +297,44 @@
             if (password.toLowerCase() === SECRET_PASSWORD.toLowerCase()) {
                 document.getElementById('loginScreen').style.display = 'none';
                 document.getElementById('mainContent').style.display = 'block';
+                setupPlayerEvents();
+                loadSong(0);
             } else {
                 alert("Incorrect password, try again baby! 😘");
             }
+        }
+
+        function loadSong(index) {
+            currentIndex = index;
+            const currentSong = playlist[currentIndex];
+            
+            document.getElementById('songTitle').innerText = currentSong.title;
+            document.getElementById('songArtist').innerText = currentSong.artist;
+            document.getElementById('audioSource').src = currentSong.file;
+            player.load();
+        }
+
+        function setupPlayerEvents() {
+            player.addEventListener('loadedmetadata', () => {
+                player.currentTime = playlist[currentIndex].start;
+            });
+
+            player.addEventListener('timeupdate', () => {
+                const currentSong = playlist[currentIndex];
+                if (player.currentTime >= currentSong.end) {
+                    player.pause();
+                    player.currentTime = currentSong.start;
+                }
+            });
+        }
+
+        function nextSong() {
+            let nextIndex = currentIndex + 1;
+            if (nextIndex >= playlist.length) {
+                nextIndex = 0;
+            }
+            loadSong(nextIndex);
+            player.play().catch(e => console.log("Interaction required"));
         }
     </script>
 </body>
