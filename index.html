@@ -3,227 +3,219 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>For My Girl 💖</title>
+    <title>For My Baby 💖</title>
+    <!-- Google Fonts for Elegant Typography -->
     <link rel="preconnect" href="https://googleapis.com">
     <link rel="preconnect" href="https://gstatic.com" crossorigin>
-    <link href="https://googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-    
+    <link href="https://googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;1,300&family=Playfair+Display:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
     <style>
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
         }
-        
-        /* Romantic background blend with roses/flowers theme */
         body {
-            background: linear-gradient(135deg, #fff0f5 0%, #ffe4e1 50%, #ffccd7 100%);
-            color: #5c3a41;
+            background-color: #fff0f3;
+            color: #4a3237;
+            font-family: 'Montserrat', sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
             padding: 15px;
-            font-family: 'Poppins', sans-serif;
             position: relative;
             overflow-x: hidden;
         }
-        
-        /* Floating animations container */
-        .flower-bg-element {
+        /* Romantic Background Decoration */
+        body::before, body::after {
+            content: "🌸";
             position: fixed;
-            font-size: 1.5rem;
-            user-select: none;
-            pointer-events: none;
-            z-index: 1;
-            animation: floatUp 8s linear infinite;
-            opacity: 0.6;
+            font-size: 5rem;
+            opacity: 0.15;
+            z-index: 0;
         }
+        body::before { top: 5%; left: 5%; }
+        body::after { bottom: 5%; right: 5%; }
 
-        @keyframes floatUp {
-            0% {
-                transform: translateY(105vh) translateX(0) rotate(0deg);
-                opacity: 0;
-            }
-            10% { opacity: 0.6; }
-            90% { opacity: 0.6; }
-            100% {
-                transform: translateY(-10vh) translateX(50px) rotate(360deg);
-                opacity: 0;
-            }
-        }
-        
-        .romantic-text {
-            font-family: 'Dancing Script', cursive;
-            font-size: 2.3rem;
-            color: #d1496a;
-            line-height: 1.2;
-            text-shadow: 1px 1px 2px rgba(255, 182, 193, 0.5);
-        }
-
-        /* Password Screen Container with flower border pattern hint */
+        /* Lock Screen Layout */
         #password-screen {
-            background: rgba(255, 255, 255, 0.92);
-            padding: 35px 20px;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(8px);
+            padding: 40px 30px;
             border-radius: 24px;
-            box-shadow: 0 12px 30px rgba(209, 73, 106, 0.15);
+            box-shadow: 0 15px 35px rgba(255, 182, 193, 0.4);
             text-align: center;
             max-width: 380px;
             width: 100%;
+            border: 1px solid rgba(255, 182, 193, 0.5);
             z-index: 10;
-            border: 3px solid #ffccd7;
         }
-        #password-screen h2 { margin-bottom: 25px; }
-        
-        /* Romantic input field styling */
-        #password-screen input, .admin-modal input, .admin-modal textarea {
+        #password-screen h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            font-style: italic;
+            margin-bottom: 25px;
+            color: #c94a65;
+        }
+        #password-screen input {
             width: 100%;
             padding: 14px;
             border: 2px solid #ffccd7;
-            border-radius: 15px;
-            margin-bottom: 15px;
+            border-radius: 50px;
+            margin-bottom: 20px;
             font-size: 1rem;
+            text-align: center;
             outline: none;
-            font-family: 'Poppins', sans-serif;
-            background: #fffafb;
-            transition: all 0.3s;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);
+            transition: border-color 0.3s;
         }
-        #password-screen input:focus, .admin-modal input:focus, .admin-modal textarea:focus {
-            border-color: #d1496a;
-            box-shadow: 0 0 8px rgba(209, 73, 106, 0.2);
+        #password-screen input:focus {
+            border-color: #c94a65;
         }
-        #password-screen input { text-align: center; }
-        
-        .btn-main {
-            background: linear-gradient(135deg, #e65c7b, #d1496a);
+        #password-screen button {
+            background: linear-gradient(135deg, #ff758c 0%, #ff7eb3 100%);
             color: white;
             border: none;
-            padding: 14px;
-            border-radius: 15px;
-            font-size: 1.1rem;
+            padding: 14px 30px;
+            border-radius: 50px;
+            font-size: 1rem;
             cursor: pointer;
-            font-weight: bold;
+            font-weight: 600;
             width: 100%;
-            font-family: 'Poppins', sans-serif;
-            box-shadow: 0 4px 10px rgba(209, 73, 106, 0.3);
-            transition: all 0.3s;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 15px rgba(255, 117, 140, 0.4);
+            transition: all 0.2s;
         }
-        .btn-main:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 14px rgba(209, 73, 106, 0.4);
+        #password-screen button:active {
+            transform: scale(0.98);
         }
         #error-message {
-            color: #e74c3c;
-            margin-top: 12px;
+            background-color: #fff0f1;
+            color: #d93838;
+            border: 1px dashed #ffccd0;
+            padding: 10px;
+            border-radius: 12px;
+            margin-top: 15px;
             font-size: 0.9rem;
+            font-weight: 600;
             display: none;
-            font-weight: bold;
         }
 
-        /* Beautiful Main Dashboard Frame */
+        /* Main Glassmorphic Container */
         #main-content {
             display: none;
             width: 100%;
             max-width: 600px;
             background: rgba(255, 255, 255, 0.95);
             border-radius: 24px;
-            box-shadow: 0 15px 35px rgba(209, 73, 106, 0.2);
+            box-shadow: 0 20px 40px rgba(255, 182, 193, 0.3);
             overflow: hidden;
             margin: auto;
+            border: 1px solid rgba(255, 182, 193, 0.4);
             z-index: 10;
-            border: 2px solid #ffccd7;
         }
-        
-        /* Floral Accent Header Graphic Space inside Card */
-        .floral-banner {
-            width: 100%;
-            height: 120px;
-            background: url('https://unsplash.com') center/cover no-repeat;
-            border-bottom: 3px solid #ffccd7;
-            position: relative;
-        }
-        .floral-overlay {
-            position: absolute;
-            top:0; left:0; width:100%; height:100%;
-            background: rgba(255, 240, 245, 0.3);
-        }
-
-        /* Pretty Navigation Bar Links Styling */
         .tabs {
             display: flex;
-            background: #ffccd7;
+            background: #ffe3e8;
             overflow-x: auto;
+            border-bottom: 1px solid #ffccd7;
         }
         .tab-btn {
             flex: 1;
-            padding: 16px 10px;
+            padding: 18px 10px;
             border: none;
             background: none;
-            font-size: 0.95rem;
-            font-weight: bold;
-            color: #9c5c6b;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #8c5b66;
             cursor: pointer;
             text-align: center;
             white-space: nowrap;
-            font-family: 'Poppins', sans-serif;
             transition: all 0.3s;
+            letter-spacing: 0.5px;
+            border-top: 3px solid transparent;
         }
+        /* RESTORED: Visual feedback when tab is active */
         .tab-btn.active {
             background: white;
-            color: #d1496a;
-            border-top: 4px solid #d1496a;
+            color: #c94a65;
+            border-top: 3px solid #c94a65;
         }
-        
         .tab-content {
-            padding: 30px 25px;
+            padding: 35px 25px;
             display: none;
-            animation: gentleFade 0.5s ease;
+            animation: fadeIn 0.4s ease;
         }
-        .tab-content.active { display: block; }
-        
-        @keyframes gentleFade {
+        @keyframes fadeIn {
             from { opacity: 0; transform: translateY(8px); }
             to { opacity: 1; transform: translateY(0); }
         }
+        .tab-content.active {
+            display: block;
+        }
+
+        /* Decorative Floral Elements */
+        .floral-divider {
+            text-align: center;
+            color: #ffccd7;
+            margin: 15px 0 25px 0;
+            font-size: 1.2rem;
+            letter-spacing: 5px;
+        }
 
         h2.section-title {
-            margin-bottom: 20px;
-            border-bottom: 2px dashed #ffb3c5;
-            padding-bottom: 12px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
+            font-family: 'Playfair Display', serif;
+            color: #c94a65;
+            text-align: center;
+            font-size: 1.8rem;
+            font-weight: 600;
         }
         .letter-body {
-            line-height: 1.9;
-            font-size: 1.05rem;
+            font-family: 'Playfair Display', serif;
+            line-height: 2;
+            font-size: 1.15rem;
             white-space: pre-wrap;
-            color: #69434c;
+            color: #5c4146;
+            font-style: italic;
+            text-align: center;
+            padding: 0 10px;
         }
-        
+
+        /* Lists and Track Containers */
         .music-list, .notes-list {
             display: flex;
             flex-direction: column;
-            gap: 18px;
+            gap: 20px;
         }
         .track-item {
-            background: #fff5f7;
-            padding: 12px;
+            background: #fffcfd;
+            padding: 15px;
             border-radius: 16px;
-            border-left: 6px solid #d1496a;
-            box-shadow: 0 4px 8px rgba(209, 73, 106, 0.04);
+            border: 1px solid #ffe3e8;
+            box-shadow: 0 4px 10px rgba(255, 182, 193, 0.15);
+        }
+        .track-item h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #8c5b66;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
         .note-item {
-            background: #fffef0;
+            background: #fffdf2;
             padding: 18px;
-            border-radius: 14px;
-            border-left: 6px solid #f1c40f;
-            font-size: 1.02rem;
-            box-shadow: 2px 4px 10px rgba(0,0,0,0.03);
-            line-height: 1.5;
+            border-radius: 16px;
+            border-left: 4px solid #ffda79;
+            font-size: 1rem;
+            color: #61533b;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.02);
+            font-style: italic;
         }
-        
-        /* Grid Display System for Pictures Gallery */
+
+        /* Elegant Frame Gallery */
         .gallery-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -231,82 +223,72 @@
         }
         .gallery-grid img {
             width: 100%;
-            height: 170px;
+            height: 180px;
             object-fit: cover;
-            border-radius: 14px;
-            border: 4px solid white;
-            box-shadow: 0 6px 12px rgba(209, 73, 106, 0.1);
-            transition: all 0.3s;
+            border-radius: 12px;
+            border: 6px solid white;
+            box-shadow: 0 8px 20px rgba(224, 130, 150, 0.15);
+            transition: transform 0.3s;
         }
         .gallery-grid img:hover {
-            transform: scale(1.03) rotate(1deg);
+            transform: scale(1.03);
         }
 
-        /* Floating Admin Configuration Gear Control Button */
-        .admin-trigger {
-            position: fixed;
-            bottom: 15px;
-            right: 15px;
-            background: rgba(209, 73, 106, 0.25);
-            border: none;
-            color: white;
-            width: 38px;
-            height: 38px;
-            border-radius: 50%;
-            font-size: 0.9rem;
-            cursor: pointer;
-            z-index: 1000;
-            transition: background 0.3s;
+        /* Floating Hearts Graphics */
+        .heart-bg {
+            position: absolute;
+            color: rgba(255, 105, 180, 0.15);
+            font-size: 1.5rem;
+            animation: floatUp 6s infinite linear;
+            z-index: 1;
+            bottom: -20px;
         }
-        .admin-trigger:hover { background: rgba(209, 73, 106, 1); }
-
-        /* Admin Module Overlay Screen styling */
-        .admin-modal {
-            display: none;
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(92, 58, 65, 0.5);
-            backdrop-filter: blur(4px);
-            z-index: 2000;
-            justify-content: center;
-            align-items: center;
-            padding: 15px;
-        }
-        .admin-box {
-            background: white;
-            padding: 25px;
-            border-radius: 24px;
-            width: 100%;
-            max-width: 500px;
-            max-height: 85vh;
-            overflow-y: auto;
-            border: 2px solid #ffccd7;
-        }
-        .admin-box h3 { margin-bottom: 15px; color: #d1496a; }
-        .admin-box label { font-size: 0.85rem; font-weight: bold; display: block; margin-bottom: 5px; color: #7d525d; }
-        .admin-box textarea { height: 120px; resize: none; }
-        .admin-close {
-            background: #b5a2a5;
-            margin-top: 10px;
+        @keyframes floatUp {
+            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Dynamic Animated Floating Flower Elements (Generated by script below) -->
-    <div id="animation-layer"></div>
+    <!-- Container for floating hearts background -->
+    <div id="hearts-container" style="position:fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:1;"></div>
 
-    <!-- Admin Gear Access Button Overlay -->
-    <button class="admin-trigger" onclick="openAdmin()">⚙️</button>
+    <!-- Lock Screen -->
+    <div id="password-screen">
+        <h2>Welcome my baby, <br>Enjoy your stay 🌸</h2>
+        <input type="password" id="code-input" placeholder="Type password here..." onkeydown="if(event.key === 'Enter') checkCode()">
+        <button onclick="checkCode()">Enter with Love</button>
+        <div id="error-message">Wrong code! Try again my love. ❤️</div>
+    </div>
 
-    <!-- Admin Settings Dashboard Control Overlay View Component -->
-    <div id="admin-modal" class="admin-modal">
-        <div class="admin-box">
-            <h3>Admin Input Panel Settings Dashboard</h3>
-            
-            <label>Girlfriend Access Password Code</label>
-            <input type="text" id="cfg-gf-pass" value="iloveyou">
+    <!-- Main Content -->
+    <div id="main-content">
+        <nav class="tabs">
+            <button class="tab-btn active" onclick="switchTab(event, 'love-letter')">💌 Letter</button>
+            <button class="tab-btn" onclick="switchTab(event, 'music')">🎵 Music</button>
+            <button class="tab-btn" onclick="switchTab(event, 'notes')">📝 Notes</button>
+            <button class="tab-btn" onclick="switchTab(event, 'gallery')">🖼️ Gallery</button>
+        </nav>
 
-            <label>Love Letter Text Context</label>
-            <textarea id="cfg-letter"></textarea>
-  
+        <!-- 1. Love Letter -->
+        <div id="love-letter" class="tab-content active">
+            <h2 class="section-title">My Dearest,</h2>
+            <div class="floral-divider">❦ 🌸 ❦</div>
+            <div class="letter-body">Every day with you feels like a beautiful dream that I never want to wake up from. You brighten my darkest days, and your laughter is my favorite melody.
+
+I cherish every moment we spend together, from our silly inside jokes to our deepest conversations. Thank you for showing me what true happiness feels like.
+
+Forever yours,
+[Khurt]</div>
+            <div class="floral-divider" style="margin-top: 25px;">❧ 🌸 ☙</div>
+        </div>
+
+        <!-- 2. Music -->
+        <div id="music" class="tab-content">
+            <h2 class="section-title">Our Playlist</h2>
+            <div class="floral-divider">❦ 🌸 ❦</div>
+            <div class="music-list">
+                <div class="track-item">
+                    <h3>🎶 Theme Song 1</h3>
+                    
