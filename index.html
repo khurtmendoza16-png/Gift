@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For My Girl 💖</title>
+    <link rel="preconnect" href="https://googleapis.com">
+    <link rel="preconnect" href="https://gstatic.com" crossorigin>
+    <link href="https://googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        /* Romantic background blend with roses/flowers theme */
+        body {
+            background: linear-gradient(135deg, #fff0f5 0%, #ffe4e1 50%, #ffccd7 100%);
+            color: #5c3a41;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 15px;
+            font-family: 'Poppins', sans-serif;
+            position: relative;
+            overflow-x: hidden;
+        }
+        
+        /* Floating animations container */
+        .flower-bg-element {
+            position: fixed;
+            font-size: 1.5rem;
+            user-select: none;
+            pointer-events: none;
+            z-index: 1;
+            animation: floatUp 8s linear infinite;
+            opacity: 0.6;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(105vh) translateX(0) rotate(0deg);
+                opacity: 0;
+            }
+            10% { opacity: 0.6; }
+            90% { opacity: 0.6; }
+            100% {
+                transform: translateY(-10vh) translateX(50px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        .romantic-text {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.3rem;
+            color: #d1496a;
+            line-height: 1.2;
+            text-shadow: 1px 1px 2px rgba(255, 182, 193, 0.5);
+        }
+
+        /* Password Screen Container with flower border pattern hint */
+        #password-screen {
+            background: rgba(255, 255, 255, 0.92);
+            padding: 35px 20px;
+            border-radius: 24px;
+            box-shadow: 0 12px 30px rgba(209, 73, 106, 0.15);
+            text-align: center;
+            max-width: 380px;
+            width: 100%;
+            z-index: 10;
+            border: 3px solid #ffccd7;
+        }
+        #password-screen h2 { margin-bottom: 25px; }
+        
+        /* Romantic input field styling */
+        #password-screen input, .admin-modal input, .admin-modal textarea {
+            width: 100%;
+            padding: 14px;
+            border: 2px solid #ffccd7;
+            border-radius: 15px;
+            margin-bottom: 15px;
+            font-size: 1rem;
+            outline: none;
+            font-family: 'Poppins', sans-serif;
+            background: #fffafb;
+            transition: all 0.3s;
+        }
+        #password-screen input:focus, .admin-modal input:focus, .admin-modal textarea:focus {
+            border-color: #d1496a;
+            box-shadow: 0 0 8px rgba(209, 73, 106, 0.2);
+        }
+        #password-screen input { text-align: center; }
+        
+        .btn-main {
+            background: linear-gradient(135deg, #e65c7b, #d1496a);
+            color: white;
+            border: none;
+            padding: 14px;
+            border-radius: 15px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            font-weight: bold;
+            width: 100%;
+            font-family: 'Poppins', sans-serif;
+            box-shadow: 0 4px 10px rgba(209, 73, 106, 0.3);
+            transition: all 0.3s;
+        }
+        .btn-main:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 14px rgba(209, 73, 106, 0.4);
+        }
+        #error-message {
+            color: #e74c3c;
+            margin-top: 12px;
+            font-size: 0.9rem;
+            display: none;
+            font-weight: bold;
+        }
+
+        /* Beautiful Main Dashboard Frame */
+        #main-content {
+            display: none;
+            width: 100%;
+            max-width: 600px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 24px;
+            box-shadow: 0 15px 35px rgba(209, 73, 106, 0.2);
+            overflow: hidden;
+            margin: auto;
+            z-index: 10;
+            border: 2px solid #ffccd7;
+        }
+        
+        /* Floral Accent Header Graphic Space inside Card */
+        .floral-banner {
+            width: 100%;
+            height: 120px;
+            background: url('https://unsplash.com') center/cover no-repeat;
+            border-bottom: 3px solid #ffccd7;
+            position: relative;
+        }
+        .floral-overlay {
+            position: absolute;
+            top:0; left:0; width:100%; height:100%;
+            background: rgba(255, 240, 245, 0.3);
+        }
+
+        /* Pretty Navigation Bar Links Styling */
+        .tabs {
+            display: flex;
+            background: #ffccd7;
+            overflow-x: auto;
+        }
+        .tab-btn {
+            flex: 1;
+            padding: 16px 10px;
+            border: none;
+            background: none;
+            font-size: 0.95rem;
+            font-weight: bold;
+            color: #9c5c6b;
+            cursor: pointer;
+            text-align: center;
+            white-space: nowrap;
+            font-family: 'Poppins', sans-serif;
+            transition: all 0.3s;
+        }
+        .tab-btn.active {
+            background: white;
+            color: #d1496a;
+            border-top: 4px solid #d1496a;
+        }
+        
+        .tab-content {
+            padding: 30px 25px;
+            display: none;
+            animation: gentleFade 0.5s ease;
+        }
+        .tab-content.active { display: block; }
+        
+        @keyframes gentleFade {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h2.section-title {
+            margin-bottom: 20px;
+            border-bottom: 2px dashed #ffb3c5;
+            padding-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .letter-body {
+            line-height: 1.9;
+            font-size: 1.05rem;
+            white-space: pre-wrap;
+            color: #69434c;
+        }
+        
+        .music-list, .notes-list {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+        .track-item {
+            background: #fff5f7;
+            padding: 12px;
+            border-radius: 16px;
+            border-left: 6px solid #d1496a;
+            box-shadow: 0 4px 8px rgba(209, 73, 106, 0.04);
+        }
+        .note-item {
+            background: #fffef0;
+            padding: 18px;
+            border-radius: 14px;
+            border-left: 6px solid #f1c40f;
+            font-size: 1.02rem;
+            box-shadow: 2px 4px 10px rgba(0,0,0,0.03);
+            line-height: 1.5;
+        }
+        
+        /* Grid Display System for Pictures Gallery */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+        .gallery-grid img {
+            width: 100%;
+            height: 170px;
+            object-fit: cover;
+            border-radius: 14px;
+            border: 4px solid white;
+            box-shadow: 0 6px 12px rgba(209, 73, 106, 0.1);
+            transition: all 0.3s;
+        }
+        .gallery-grid img:hover {
+            transform: scale(1.03) rotate(1deg);
+        }
+
+        /* Floating Admin Configuration Gear Control Button */
+        .admin-trigger {
+            position: fixed;
+            bottom: 15px;
+            right: 15px;
+            background: rgba(209, 73, 106, 0.25);
+            border: none;
+            color: white;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            font-size: 0.9rem;
+            cursor: pointer;
+            z-index: 1000;
+            transition: background 0.3s;
+        }
+        .admin-trigger:hover { background: rgba(209, 73, 106, 1); }
+
+        /* Admin Module Overlay Screen styling */
+        .admin-modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(92, 58, 65, 0.5);
+            backdrop-filter: blur(4px);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            padding: 15px;
+        }
+        .admin-box {
+            background: white;
+            padding: 25px;
+            border-radius: 24px;
+            width: 100%;
+            max-width: 500px;
+            max-height: 85vh;
+            overflow-y: auto;
+            border: 2px solid #ffccd7;
+        }
+        .admin-box h3 { margin-bottom: 15px; color: #d1496a; }
+        .admin-box label { font-size: 0.85rem; font-weight: bold; display: block; margin-bottom: 5px; color: #7d525d; }
+        .admin-box textarea { height: 120px; resize: none; }
+        .admin-close {
+            background: #b5a2a5;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Dynamic Animated Floating Flower Elements (Generated by script below) -->
+    <div id="animation-layer"></div>
+
+    <!-- Admin Gear Access Button Overlay -->
+    <button class="admin-trigger" onclick="openAdmin()">⚙️</button>
+
+    <!-- Admin Settings Dashboard Control Overlay View Component -->
+    <div id="admin-modal" class="admin-modal">
+        <div class="admin-box">
+            <h3>Admin Input Panel Settings Dashboard</h3>
+            
+            <label>Girlfriend Access Password Code</label>
+            <input type="text" id="cfg-gf-pass" value="iloveyou">
+
+            <label>Love Letter Text Context</label>
+            <textarea id="cfg-letter"></textarea>
+  
