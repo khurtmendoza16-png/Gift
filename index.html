@@ -1,243 +1,270 @@
-‎<!DOCTYPE html>
-‎<html lang="en">
-‎<head>
-‎    <meta charset="UTF-8">
-‎    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-‎    <title>For My Baby 💖</title>
-‎    <style>
-‎        * {
-‎            box-sizing: border-box;
-‎            margin: 0;
-‎            padding: 0;
-‎            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-‎        }
-‎        body {
-‎            background-color: #ffeef2;
-‎            color: #5c3a41;
-‎            display: flex;
-‎            justify-content: center;
-‎            align-items: center;
-‎            min-height: 100vh;
-‎            padding: 15px;
-‎        }
-‎        #password-screen {
-‎            background: white;
-‎            padding: 30px 20px;
-‎            border-radius: 20px;
-‎            box-shadow: 0 10px 25px rgba(224, 130, 150, 0.2);
-‎            text-align: center;
-‎            max-width: 360px;
-‎            width: 100%;
-‎        }
-‎        #password-screen h2 {
-‎            font-size: 1.3rem;
-‎            margin-bottom: 20px;
-‎            color: #d1496a;
-‎        }
-‎        #password-screen input {
-‎            width: 100%;
-‎            padding: 12px;
-‎            border: 2px solid #ffccd7;
-‎            border-radius: 10px;
-‎            margin-bottom: 15px;
-‎            font-size: 1rem;
-‎            text-align: center;
-‎            outline: none;
-‎        }
-‎        #password-screen button {
-‎            background-color: #d1496a;
-‎            color: white;
-‎            border: none;
-‎            padding: 12px 30px;
-‎            border-radius: 10px;
-‎            font-size: 1rem;
-‎            cursor: pointer;
-‎            font-weight: bold;
-‎            width: 100%;
-‎        }
-‎        #error-message {
-‎            color: #e74c3c;
-‎            margin-top: 10px;
-‎            font-size: 0.9rem;
-‎            display: none;
-‎        }
-‎        #main-content {
-‎            display: none;
-‎            width: 100%;
-‎            max-width: 600px;
-‎            background: white;
-‎            border-radius: 20px;
-‎            box-shadow: 0 10px 25px rgba(224, 130, 150, 0.2);
-‎            overflow: hidden;
-‎            margin: auto;
-‎        }
-‎        .tabs {
-‎            display: flex;
-‎            background: #ffccd7;
-‎            overflow-x: auto;
-‎        }
-‎        .tab-btn {
-‎            flex: 1;
-‎            padding: 15px 10px;
-‎            border: none;
-‎            background: none;
-‎            font-size: 0.9rem;
-‎            font-weight: bold;
-‎            color: #9c5c6b;
-‎            cursor: pointer;
-‎            text-align: center;
-‎            white-space: nowrap;
-‎        }
-‎        .tab-btn.active {
-‎            background: white;
-‎            color: #d1496a;
-‎            border-top: 3px solid #d1496a;
-‎        }
-‎        .tab-content {
-‎            padding: 20px;
-‎            display: none;
-‎        }
-‎        .tab-content.active {
-‎            display: block;
-‎        }
-‎        h2.section-title {
-‎            color: #d1496a;
-‎            margin-bottom: 15px;
-‎            font-size: 1.4rem;
-‎            border-bottom: 2px dashed #ffccd7;
-‎            padding-bottom: 10px;
-‎        }
-‎        .letter-body {
-‎            line-height: 1.8;
-‎            font-size: 1rem;
-‎            white-space: pre-wrap;
-‎        }
-‎        .music-list, .notes-list {
-‎            display: flex;
-‎            flex-direction: column;
-‎            gap: 15px;
-‎        }
-‎        .track-item {
-‎            background: #fff5f7;
-‎            padding: 12px;
-‎            border-radius: 12px;
-‎            border-left: 5px solid #d1496a;
-‎        }
-‎        .track-item h3 {
-‎            font-size: 0.9rem;
-‎            margin-bottom: 8px;
-‎        }
-‎        .note-item {
-‎            background: #fffde6;
-‎            padding: 15px;
-‎            border-radius: 10px;
-‎            border-left: 5px solid #f1c40f;
-‎            font-size: 1rem;
-‎        }
-‎        .gallery-grid {
-‎            display: grid;
-‎            grid-template-columns: repeat(2, 1fr);
-‎            gap: 10px;
-‎        }
-‎        .gallery-grid img {
-‎            width: 100%;
-‎            height: 150px;
-‎            object-fit: cover;
-‎            border-radius: 8px;
-‎            border: 2px solid white;
-‎            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-‎        }
-‎    </style>
-‎</head>
-‎<body>
-‎
-‎    <!-- Lock Screen -->
-‎    <div id="password-screen">
-‎        <h2>Welcome my baby, Enjoy your stay</h2>
-‎        <input type="password" id="code-input" placeholder="Type password here...">
-‎        <button onclick="checkCode()">Enter</button>
-‎        <p id="error-message">Wrong code! Try again my love. ❤️</p>
-‎    </div>
-‎
-‎    <!-- Main Content -->
-‎    <div id="main-content">
-‎        <nav class="tabs">
-‎            <button class="tab-btn active" onclick="switchTab(event, 'love-letter')">💌 Love Letter</button>
-‎            <button class="tab-btn" onclick="switchTab(event, 'music')">🎵 Music</button>
-‎            <button class="tab-btn" onclick="switchTab(event, 'notes')">📝 Notes</button>
-‎            <button class="tab-btn" onclick="switchTab(event, 'gallery')">🖼️ Gallery</button>
-‎        </nav>
-‎
-‎        <!-- 1. Love Letter -->
-‎        <div id="love-letter" class="tab-content active">
-‎            <h2 class="section-title">My Dearest,</h2>
-‎            <div class="letter-body">Every day with you feels like a beautiful dream that I never want to wake up from. You brighten my darkest days, and your laughter is my favorite melody.
-‎
-‎I cherish every moment we spend together, from our silly inside jokes to our deepest conversations. Thank you for showing me what true happiness feels like.
-‎
-‎Forever yours,
-‎[Khurt]</div>
-‎        </div>
-‎
-‎        <!-- 2. Music -->
-‎        <div id="music" class="tab-content">
-‎            <h2 class="section-title">Songs That Remind Me of You</h2>
-‎            <div class="music-list">
-‎                <div class="track-item">
-‎                    <h3>🎶 Theme Song 1</h3>
-‎                    <iframe style="border-radius:12px" src="https://spotify.com" width="100%" height="80" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-‎                </div>
-‎                <div class="track-item">
-‎                    <h3>🎶 Theme Song 2</h3>
-‎                    <iframe style="border-radius:12px" src="https://spotify.com" width="100%" height="80" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-‎                </div>
-‎            </div>
-‎        </div>
-‎
-‎        <!-- 3. Notes -->
-‎        <div id="notes" class="tab-content">
-‎            <h2 class="section-title">Little Reminders</h2>
-‎            <div class="notes-list">
-‎                <div class="note-item">✨ Take care always!</div>
-‎                <div class="note-item">✨ Drink plenty of water today.</div>
-‎                <div class="note-item">✨ You're mine... always and forever.</div>
-‎            </div>
-‎        </div>
-‎
-‎        <!-- 4. Gallery -->
-‎        <div id="gallery" class="tab-content">
-‎            <h2 class="section-title">Our Memories</h2>
-‎            <div class="gallery-grid">
-‎                <!-- Drop online image URLs directly here -->
-‎                <img src="https://unsplash.com" alt="Memory">
-‎                <img src="https://unsplash.com" alt="Memory">
-‎            </div>
-‎        </div>
-‎    </div>
-‎
-‎    <script>
-‎        const SECRET_CODE = "iloveyou"; // Change password here
-‎
-‎        function checkCode() {
-‎            const input = document.getElementById('code-input').value;
-‎            const error = document.getElementById('error-message');
-‎            if(input.toLowerCase() === SECRET_CODE.toLowerCase()) {
-‎                document.getElementById('password-screen').style.display = 'none';
-‎                document.getElementById('main-content').style.display = 'block';
-‎            } else {
-‎                error.style.display = 'block';
-‎            }
-‎        }
-‎
-‎        function switchTab(event, tabId) {
-‎            const contents = document.querySelectorAll('.tab-content');
-‎            contents.forEach(content => content.classList.remove('active'));
-‎            const buttons = document.querySelectorAll('.tab-btn');
-‎            buttons.forEach(btn => btn.classList.remove('active'));
-‎            document.getElementById(tabId).classList.add('active');
-‎            event.currentTarget.classList.add('active');
-‎        }
-‎    </script>
-‎</body>
-‎</html
-‎
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>For My Baby</title>
+    <style>
+        /* Base Setup */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            min-height: 100vh;
+            overscroll-behavior: none;
+            background: linear-gradient(135deg, #ffeef2 0%, #ffd1dc 100%);
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Background Flowers */
+        .sakura-bg {
+            position: fixed;
+            font-size: 4.5rem;
+            color: rgba(255, 182, 193, 0.35);
+            user-select: none;
+            z-index: 1;
+        }
+        .top-left { top: 5%; left: 5%; transform: rotate(-15deg); }
+        .bottom-right { bottom: 5%; right: 5%; transform: rotate(20deg); }
+
+        /* SCREEN 1: LOGIN SCREEN */
+        #loginScreen {
+            display: flex;
+            min-height: 100vh;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            padding: 20px;
+        }
+
+        .login-card {
+            background: #ffffff;
+            padding: 2.5rem 1.8rem;
+            border-radius: 28px;
+            box-shadow: 0 16px 40px rgba(255, 154, 178, 0.2);
+            width: 100%;
+            max-width: 360px;
+            text-align: center;
+            z-index: 10;
+        }
+
+        h1 { color: #d14d70; font-size: 1.7rem; font-weight: 700; margin-bottom: 0.2rem; }
+        h2 { color: #d14d70; font-size: 1.5rem; font-weight: 600; font-style: italic; margin-bottom: 2.2rem; display: flex; justify-content: center; align-items: center; gap: 6px; }
+        .flower-icon { font-style: normal; font-size: 1.3rem; }
+
+        .password-input {
+            width: 100%;
+            padding: 0.9rem 1rem;
+            border: 1.5px solid #ffe3e9;
+            border-radius: 50px;
+            font-size: 1.3rem;
+            letter-spacing: 4px;
+            text-align: center;
+            color: #d14d70;
+            outline: none;
+            background-color: #fffcfd;
+            margin-bottom: 1.8rem;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 1rem;
+            border: none;
+            border-radius: 50px;
+            background: linear-gradient(90deg, #ff8fa9 0%, #ff5c8a 100%);
+            color: white;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 6px 20px rgba(255, 92, 138, 0.35);
+        }
+
+        .submit-btn:active { transform: scale(0.98); }
+
+        /* SCREEN 2: MAIN DASHBOARD */
+        #mainContent {
+            display: none;
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+            position: relative;
+            z-index: 10;
+        }
+
+        .content-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 24px;
+            padding: 2rem 1.5rem;
+            box-shadow: 0 10px 30px rgba(255, 154, 178, 0.15);
+            margin-bottom: 1.8rem;
+        }
+
+        .section-title {
+            color: #d14d70;
+            font-size: 1.3rem;
+            margin-bottom: 1.2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            border-bottom: 2px dashed #ffe3e9;
+            padding-bottom: 8px;
+        }
+
+        /* 1. LOVE LETTER */
+        .love-letter {
+            color: #555;
+            font-size: 1.05rem;
+            line-height: 1.6;
+            text-align: left;
+            white-space: pre-line;
+            font-style: italic;
+        }
+
+        /* 2. SPOTIFY MUSIC PLAYER */
+        .spotify-container {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        /* 3. NOTES */
+        .notes-list {
+            list-style: none;
+            text-align: left;
+        }
+        .note-item {
+            background: #fff5f7;
+            padding: 12px 16px;
+            border-radius: 12px;
+            margin-bottom: 10px;
+            border-left: 4px solid #ff8fa9;
+            color: #444;
+            font-size: 0.95rem;
+            line-height: 1.4;
+        }
+
+        /* 4. GALLERY */
+        .photo-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+        .photo-frame {
+            background: white;
+            padding: 8px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            transform: rotate(var(--r));
+            transition: transform 0.3s;
+        }
+        .photo-frame:active {
+            transform: scale(1.05) rotate(0deg);
+            z-index: 20;
+        }
+        .photo-frame img {
+            width: 100%;
+            height: 140px;
+            object-fit: cover;
+            border-radius: 8px;
+            background-color: #ffeef2;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Background Sprites -->
+    <div class="sakura-bg top-left">🌸</div>
+    <div class="sakura-bg bottom-right">🌸</div>
+
+    <!-- SCREEN 1: LOGIN -->
+    <div id="loginScreen">
+        <div class="login-card">
+            <form onsubmit="checkPassword(event)">
+                <h1>Welcome my baby,</h1>
+                <h2>Enjoy your stay <span class="flower-icon">🌸</span></h2>
+                
+                <input type="password" id="passInput" class="password-input" placeholder="••••••••" required>
+                
+                <button type="submit" class="submit-btn">Enter with Love</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- SCREEN 2: MAIN DASHBOARD -->
+    <div id="mainContent">
+        
+        <!-- SECTION 1: LOVE LETTER -->
+        <div class="content-card">
+            <h3 class="section-title">✍️ My Letter to You</h3>
+            <p class="love-letter">
+                To my favorite person,
+
+                Thank you for being the brightest part of my day, my comfort place, and my best friend. Every moment with you is a memory I treasure. 
+                
+                I created this little space just for you to remind you how deeply you are loved. Forever and always. ❤️
+            </p>
+        </div>
+
+        <!-- SECTION 2: MUSIC (SPOTIFY EMBED) -->
+        <div class="content-card">
+            <h3 class="section-title">🎵 Our Song</h3>
+            <div class="spotify-container">
+                <!-- Configured with Glue Song by beabadoobee -->
+                <iframe style="border-radius:12px" src="https://spotify.com" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+            </div>
+        </div>
+
+        <!-- SECTION 3: NOTES -->
+        <div class="content-card">
+            <h3 class="section-title">📌 Little Things I Love About You</h3>
+            <ul class="notes-list">
+                <li class="note-item">✨ The way your eyes crinkle when you smile genuinely.</li>
+                <li class="note-item">🧸 How safe and peaceful it feels just sitting next to you.</li>
+                <li class="note-item">🥞 Your laugh is literally my absolute favorite sound in the world.</li>
+            </ul>
+        </div>
+
+        <!-- SECTION 4: GALLERY -->
+        <div class="content-card">
+            <h3 class="section-title">📸 Beautiful Moments</h3>
+            <div class="photo-grid">
+                <div class="photo-frame" style="--r: -3deg">
+                    <img src="https://unsplash.com" alt="Us">
+                </div>
+                <div class="photo-frame" style="--r: 3deg">
+                    <img src="https://unsplash.com" alt="Us">
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // Password to unlock is 'love'
+        const SECRET_PASSWORD = "love";
+
+        function checkPassword(event) {
+            event.preventDefault();
+            const password = document.getElementById('passInput').value;
+            
+            if (password.toLowerCase() === SECRET_PASSWORD.toLowerCase()) {
+                document.getElementById('loginScreen').style.display = 'none';
+                document.getElementById('mainContent').style.display = 'block';
+            } else {
+                alert("Incorrect password, try again baby! 😘");
+            }
+        }
+    </script>
+</body>
+</html>
