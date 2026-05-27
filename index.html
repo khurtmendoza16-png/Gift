@@ -536,7 +536,125 @@
         <div class="card">
      <h2>A surprise</h2>
      <p>Tap the button below whenever you need a smile.</p>
-    <button class="surprise-btn" id="surpriseBtn">Press me 💌</button>
+    <button class="surprise-btn" id="sur<!-- MUSIC -->
+
+<div class="panel" id="panel-music">
+
+  <h2>Songs that remind me of you</h2>
+
+  <div class="card">
+
+    <div class="track-list">
+
+      <!-- Track 1 -->
+
+      <div class="music-item">
+
+        <div class="track-header">
+
+          <div class="track-icon">🎶</div>
+
+          <div class="track-info">
+
+            <div class="track-title">Got Me Tangled</div>
+
+            <div class="track-artist">Arthur Nery</div>
+
+          </div>
+
+        </div>
+
+        <div class="player-controls">
+
+          <button class="play-btn" data-track="0">▶</button>
+
+          <div class="progress-container">
+
+            <div class="progress-bar" data-track="0"><div class="progress-bar-fill"></div></div>
+
+            <div class="time-display" data-track="0">0:00</div>
+
+          </div>
+
+          <div class="volume-control">
+
+            <span style="font-size:12px;color:#a55a73;">🔊</span>
+
+            <div class="volume-slider">
+
+              <input type="range" min="0" max="100" value="100" data-track="0">
+
+            </div>
+
+          </div>
+
+        </div>
+
+        <audio data-track="0" data-start="16" data-end="45" style="display:none;">
+
+          <source src="music/Arthur Nery - Got me Tangled.mp3" type="audio/mpeg">
+
+        </audio>
+
+      </div>
+
+      <!-- Track 2 -->
+
+      <div class="music-item">
+
+        <div class="track-header">
+
+          <div class="track-icon">🎵</div>
+
+          <div class="track-info">
+
+            <div class="track-title">Ikot</div>
+
+            <div class="track-artist">Over October</div>
+
+          </div>
+
+        </div>
+
+        <div class="player-controls">
+
+          <button class="play-btn" data-track="1">▶</button>
+
+          <div class="progress-container">
+
+            <div class="progress-bar" data-track="1"><div class="progress-bar-fill"></div></div>
+
+            <div class="time-display" data-track="1">0:00</div>
+
+          </div>
+
+          <div class="volume-control">
+
+            <span style="font-size:12px;color:#a55a73;">🔊</span>
+
+            <div class="volume-slider">
+
+              <input type="range" min="0" max="100" value="100" data-track="1">
+
+            </div>
+
+          </div>
+
+        </div>
+
+        <audio data-track="1" data-start="16" data-end="45" style="display:none;">
+
+          <source src="music/Over October - Ikot.mp3" type="audio/mpeg">
+
+        </audio>
+
+      </div>
+
+    </div>
+
+  </div>
+
+        </div>priseBtn">Press me 💌</button>
     <div class="surprise-msg" id="surpriseMsg"></div>
      </div>
   </div>
@@ -544,75 +662,7 @@
     </div>
   </div>
 
-    <!-- MUSIC -->
-    <div class="panel" id="panel-music">
-      <h2>Songs that remind me of you</h2>
-     <div class="card">
-        <div class="track-list">
-          <!-- Track 1 -->
-          <div class="music-item">
-           <div class="track-header">
-              <div class="track-icon">🎶</div>
-             <div class="track-info">
-               <div class="track-title">Got Me Tangled</div>
-               <div class="track-artist">Arthur Nery</div>
-              </div>
-            </div>
-            <div class="player-controls">
-              <button class="play-btn" data-track="0">▶</button>
-              <div class="progress-container">
-                <div class="progress-bar" data-track="0">
-                  <div class="progress-bar-fill"></div>
-               </div>
-              <div class="time-display" data-track="0">0:00</div>
-              </div>
-              <div class="volume-control">
-                <span style="font-size: 12px; color: #a55a73;">🔊</span>
-              <div class="volume-slider">
-                  <input type="range" min="0" max="100" value="100" data-track="0">
-               </div>
-             </div>
-            </div>
-            <audio data-track="0" style="display: none;">
-             <source src="music/Arthur Nery - Got me Tangled.mp3" type="audio/mpeg"
-              onplay="if(this.currentTime < 16) { this.currentTime = 45; }"
-              ontimeupdate="if(this.currentTime < 16 || this.currentTime >= 16) { this.pause(); this.currentTime = 16; }">
-           </audio>
-          </div>
-
-          <!-- Track 2 -->
-          <div class="music-item">
-            <div class="track-header">
-              <div class="track-icon">🎵</div>
-              <div class="track-info">
-                <div class="track-title">Ikot</div>
-               <div class="track-artist">Over October</div>
-              </div>
-            </div>
-            <div class="player-controls">
-              <button class="play-btn" data-track="1">▶</button>
-              <div class="progress-container">
-               <div class="progress-bar" data-track="1">
-                 <div class="progress-bar-fill"></div>
-               </div>
-                <div class="time-display" data-track="1">0:00</div>
-              </div>
-              <div class="volume-control">
-                <span style="font-size: 12px; color: #a55a73;">🔊</span>
-                <div class="volume-slider">
-                  <input type="range" min="0" max="100" value="100" data-track="1">
-                </div>
-              </div>
-            </div>
-            <audio data-track="1" style="display: none;">
-              <source src="music/Over October - Ikot.mp3" type="audio/mpeg"
-              onplay="if(this.currentTime < 101) { this.currentTime = 101; }"
-              ontimeupdate="if(this.currentTime < 101 || this.currentTime >= 131) { this.pause(); this.currentTime = 101; }">
-            </audio>
-          </div>
-       </div>
-      </div>
-    </div>
+    
 
   <!-- NOTES -->
   <div class="panel" id="panel-notes">
@@ -784,6 +834,51 @@ function formatTime(seconds) {
         audios[index].volume = e.target.value / 100;
      });
     });
+ document.querySelectorAll('#panel-music audio').forEach(audio => {
+
+    const start = parseFloat(audio.dataset.start) || 0;
+
+    const end   = parseFloat(audio.dataset.end)   || Infinity;
+
+    audio.addEventListener('play', () => {
+
+      if (audio.currentTime < start || audio.currentTime >= end) {
+
+        audio.currentTime = start;
+
+      }
+
+    });
+
+    audio.addEventListener('timeupdate', () => {
+
+      if (audio.currentTime >= end) {
+
+        audio.pause();
+
+        audio.currentTime = start;
+
+      }
+
+    });
+
+  });
+
+  // Minimal play/pause toggle (skip if you already have one)
+
+  document.querySelectorAll('#panel-music .play-btn').forEach(btn => {
+
+    btn.addEventListener('click', () => {
+
+      const audio = document.querySelector(`#panel-music audio[data-track="${btn.dataset.track}"]`);
+
+      if (!audio) return;
+
+      if (audio.paused) { audio.play(); btn.textContent = '⏸'; }
+
+      else { audio.pause(); btn.textContent = '▶'; }
+    });
+  });
 </script>
 </body>
 </html>
