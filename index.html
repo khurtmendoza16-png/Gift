@@ -574,7 +574,9 @@
              </div>
             </div>
             <audio data-track="0" style="display: none;">
-             <source src="music/Arthur Nery - Got me Tangled.mp3" type="audio/mpeg">
+             <source src="music/Arthur Nery - Got me Tangled.mp3" type="audio/mpeg"
+              onplay="if(this.currentTime < 16) { this.currentTime = 45; }"
+              ontimeupdate="if(this.currentTime < 16 || this.currentTime >= 16) { this.pause(); this.currentTime = 16; }">
            </audio>
           </div>
 
@@ -603,7 +605,9 @@
               </div>
             </div>
             <audio data-track="1" style="display: none;">
-              <source src="music/Over October - Ikot.mp3" type="audio/mpeg">
+              <source src="music/Over October - Ikot.mp3" type="audio/mpeg"
+              onplay="if(this.currentTime < 101) { this.currentTime = 101; }"
+              ontimeupdate="if(this.currentTime < 101 || this.currentTime >= 131) { this.pause(); this.currentTime = 101; }">
             </audio>
           </div>
        </div>
@@ -626,9 +630,9 @@
     <h2>Our Little World</h2>
     <div class="gallery">
       <div class="frame"><img src="https://images.unsplash.com/photo-1518895949257-7621c3c786d7?w=500&q=80" alt="Red tulips" loading="lazy"></div>
-      <div class="frame"><img src="https://images.unsplash.com/photo-1602615576820-ea14cf3e476a?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Romantic roses" loading="lazy"></div>
-      <div class="frame"><img src="https://images.unsplash.com/photo-1561181286-d3fee7d55364?w=500&q=80" alt="Pink roses" loading="lazy"></div>
-      <div class="frame"><img src="https://images.unsplash.com/photo-1490750967868-88aa4486c946?w=500&q=80" a
+      <div class="frame"><img src="https://images.unsplash.com/photo-1602615576820-ea14cf3e476a?q=
+        <div class="frame"><img src="https://images.unsplash.com/photo-1561181286-d3fee7d55364?w=500&q=80" alt="Pink roses" loading="lazy"></div>
+      <div class="frame"><img src="https://images.unsplash.com/photo-1490750967868-88aa4486c946?w=500&q=80" alt="Tulip field" loading="lazy"></div>
       <div class="frame"><img src="https://images.unsplash.com/photo-1455659817273-f96807779a8a?w=500&q=80" alt="Pink bouquet" loading="lazy"></div>
       <div class="frame"><img src="https://images.unsplash.com/photo-1518621736915-f3b1c41bfd00?w=500&q=80" alt="Cozy scene" loading="lazy"></div>
        <div class="frame"><img src="https://images.unsplash.com/photo-1613539246066-78db6ec4ff0f?q=80&w=1286&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Romantic roses" loading="lazy"></div>
@@ -783,5 +787,3 @@ function formatTime(seconds) {
 </script>
 </body>
 </html>
-
-                          
