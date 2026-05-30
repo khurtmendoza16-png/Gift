@@ -763,59 +763,106 @@
   surpriseBtn.addEventListener('click', () => {
     surpriseMsg.textContent = messages[Math.floor(Math.random()*messages.length)];
   });
-  const playBtns = document.querySelectorAll('.play-btn');
-    const audios = document.querySelectorAll('audio');
-   const progressBars = document.querySelectorAll('.progress-bar');
-    const timeDisplays = document.querySelectorAll('.time-display');
-    const volumeSliders = document.querySelectorAll('.volume-slider input');
-function formatTime(seconds) {
-      if (!seconds || isNaN(seconds)) return '0:00';
-      const mins = Math.floor(seconds / 60);
-      const secs = Math.floor(seconds % 60);
-      return `${mins}:${secs < 10 ? '0' : ''}${secs}`;
-    }
+ 
+ const playBtns = document.querySelectorAll('.play-btn');
+const audios = document.querySelectorAll('audio');
+const progressBars = document.querySelectorAll('.progress-bar');
+const timeDisplays = document.querySelectorAll('.time-display');
+const volumeSliders = document.querySelectorAll('.volume-slider input');
 
-    playBtns.forEach((btn, index) => {
-      btn.addEventListener('click', () => {
-          const audio = audios[index];
-        if (audio.paused) {
-          audios.forEach(a => a.pause());
-          playBtns.forEach(b => b.textContent = '▶');
-          audio.play();
-          btn.textContent = '⏸';
-        } else {
-          audio.pause();
-          btn.textContent = '▶';
+// 1. Define the snippet bounds for each track (Index matches HTML order)
+const trackBounds = {
+  0: { start: 45, end: 61 },   // Track 1 (Got Me Tangled)
+  1: { start: 101, end: 131 }, // Track 2 (Ikot)
+  2: { start: 1, end: 80 }   // Track 3 (You'll be safe here)
+};
+
+function formatTime(seconds) {
+  if (!seconds || isNaN(seconds)) return '0:00';
+  const mins = Math.floor(seconds / 60);
+  const secs = Math.floor(seconds % 60);
+  return `${mins}:${secs < 10 ? '0' : ''}${secs}`;
+}
+
+playBtns.forEach((btn, index) => {
+  btn.addEventListener('click', () => {
+    const audio = audios[index];
+    const bounds = trackBounds[index];
+
+    if (audio.paused) {
+      // Pause any other playing audio
+      audios.forEach((a, i) => {
+        if (i !== index) {
+          a.pause();
+          playBtns[i].textContent = '▶';
         }
       });
-   });
 
-    audios.forEach((audio, index) => {
-      audio.addEventListener('timeupdate', () => {
-        const progress = (audio.currentTime / audio.duration) * 100;
-        progressBars[index].querySelector('.progress-bar-fill').style.width = progress + '%';
-        timeDisplays[index].textContent = formatTime(audio.currentTime) + ' / ' + formatTime(audio.duration);
-      });
+      // FIX: Force the track to skip to its start time before playing
+      if (audio.currentTime < bounds.start || audio.currentTime >= bounds.end) {
+        audio.currentTime = bounds.start;
+      }
 
-      audio.addEventListener('ended', () => {
-        playBtns[index].textContent = '▶';
-      });
-    });
+      audio.play();
+      btn.textContent = '⏸';
+    } else {
+      audio.pause();
+      btn.textContent = '▶';
+    }
+  });
+});
 
-    progressBars.forEach((bar, index) => {
-      bar.addEventListener('click', (e) => {
-        const rect = bar.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-       const percentage = x / rect.width;
-        audios[index].currentTime = percentage * audios[index].duration;
-      });
-    });
+audios.forEach((audio, index) => {
+  const bounds = trackBounds[index];
 
-    volumeSliders.forEach((slider, index) => {
-      slider.addEventListener('input', (e) => {
-        audios[index].volume = e.target.value / 100;
-     });
-    });
+  audio.addEventListener('timeupdate', () => {
+    // FIX: Safely force the start time if the browser tries to reset it to 0
+    if (audio.currentTime < bounds.start) {
+      audio.currentTime = bounds.start;
+      return;
+    }
+
+    // FIX: If it reaches the end of your snippet, stop it and reset
+    if (audio.currentTime >= bounds.end) {
+      audio.pause();
+      audio.currentTime = bounds.start;
+      playBtns[index].textContent = '▶';
+    }
+
+    // FIX: Calculate progress percentage relative to the SNIPPET duration, not the whole song
+    const snippetDuration = bounds.end - bounds.start;
+    const snippetCurrentTime = audio.currentTime - bounds.start;
+    const progress = (snippetCurrentTime / snippetDuration) * 100;
+    
+    progressBars[index].querySelector('.progress-bar-fill').style.width = progress + '%';
+    
+    // Displays time relative to the snippet (e.g., 0:00 / 0:16)
+    timeDisplays[index].textContent = formatTime(snippetCurrentTime) + ' / ' + formatTime(snippetDuration);
+  });
+
+  audio.addEventListener('ended', () => {
+    playBtns[index].textContent = '▶';
+  });
+});
+
+progressBars.forEach((bar, index) => {
+  bar.addEventListener('click', (e) => {
+    const bounds = trackBounds[index];
+    const rect = bar.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const percentage = x / rect.width;
+    
+    // FIX: Make scrubbing work within your custom start and end boundaries
+    const snippetDuration = bounds.end - bounds.start;
+    audios[index].currentTime = bounds.start + (percentage * snippetDuration);
+  });
+});
+
+volumeSliders.forEach((slider, index) => {
+  slider.addEventListener('input', (e) => {
+    audios[index].volume = e.target.value / 100;
+  });
+});
 </script>
 </body>
 </html>
